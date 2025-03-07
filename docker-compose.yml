@@ -34,9 +34,11 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - ./mariadb_data:/var/lib/mysql  # Menggunakan bind mount untuk menyimpan data ke dalam folder project
-      - ./public/assets/app/db/master.sql:/docker-entrypoint-initdb.d/1-master.sql  # Proses Import Database Default
-      - ./init.sql:/docker-entrypoint-initdb.d/2-init.sql  # Proses allow user@'%'
+      - ./mariadb_data:/var/lib/mysql
+      - ./public/assets/app/db/master.sql:/docker-entrypoint-initdb.d/1-master.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/2-init.sql
+    ports:
+      - "3306:3306"  # Menambahkan port binding untuk MariaDB
     networks:
       - app-network
 
