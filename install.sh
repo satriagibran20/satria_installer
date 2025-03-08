@@ -94,7 +94,7 @@ else
 fi
 
 #Get Dockerfile
-wget -c  https://raw.githubusercontent.com/osatriagibran20/satria_installer/refs/heads/main/Dockerfile
+wget -c  https://raw.githubusercontent.com/satriagibran20/satria_installer/refs/heads/main/Dockerfile
 
 #Get Nginx Default
 wget -c  https://raw.githubusercontent.com/satriagibran20/satria_installer/refs/heads/main/default.conf
