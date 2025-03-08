@@ -40,4 +40,3 @@ RUN apt-get update && apt-get install -y \
 
 # Set working directory
 WORKDIR /var/www/html
-
