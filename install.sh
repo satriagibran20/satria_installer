@@ -107,7 +107,7 @@ wget -c https://raw.githubusercontent.com/satriagibran20/satria_installer/refs/h
 
 #!/bin/bash
 
-REPO_URL="https://github.com/satriagibran20/cbt2.git"
+REPO_URL="https://github.com/satriagibran20/update.git"
 TARGET_DIR="public"
 TEMP_DIR="cbt"
 
