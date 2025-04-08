@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   nginx:
     image: nginx:latest
@@ -5,6 +7,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "888:80"  # Menambahkan port 888 untuk phpMyAdmin
     volumes:
       - ./public:/var/www/html
       - ./tmp:/tmp
@@ -13,6 +16,7 @@ services:
     depends_on:
       - php
       - mariadb
+      - phpmyadmin  # Menambahkan phpMyAdmin sebagai dependensi
     networks:
       - app-network
 
@@ -37,6 +41,18 @@ services:
       - ./mariadb_data:/var/lib/mysql  # Menggunakan bind mount untuk menyimpan data ke dalam folder project
       - ./public/assets/app/db/master.sql:/docker-entrypoint-initdb.d/1-master.sql  # Proses Import Database Default
       - ./init.sql:/docker-entrypoint-initdb.d/2-init.sql  # Proses allow user@'%'
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "888:80"  # Mengakses phpMyAdmin melalui port 888
+    environment:
+      - PMA_HOST=mariadb  # Host database
+      - PMA_USER=${MYSQL_USER}  # User database
+      - PMA_PASSWORD=${MYSQL_PASSWORD}  # Password database
     networks:
       - app-network
 
